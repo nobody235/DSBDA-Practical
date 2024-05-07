@@ -1,0 +1,25 @@
+import pandas as pd
+df = pd.read_csv('https://raw.githubusercontent.com/AbhijeetChattar262/Test/main/student.csv')
+df
+
+df.shape
+
+df.head()
+
+df.count
+
+df.info
+
+df.isnull()
+
+df.dropna()
+
+df.fillna(0)
+
+df['class'].fillna('TE')
+
+df['marks'].fillna(df['marks'].mean())
+
+df.fillna(method='pad')
+
+df.describe()

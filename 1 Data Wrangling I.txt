@@ -1,0 +1,18 @@
+import seaborn as sns
+df = sns.load_dataset('iris')
+df
+
+df.isnull()
+
+df.describe()
+
+df.shape
+
+df.ndim
+
+df.dtypes
+
+import pandas as pd
+dummies = pd.get_dummies(df.species)
+merged = pd.concat([df, dummies], axis='columns')
+merged.drop(['species'], axis='columns')

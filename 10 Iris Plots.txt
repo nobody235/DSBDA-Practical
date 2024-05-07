@@ -1,0 +1,25 @@
+import seaborn as sns
+df = sns.load_dataset('iris')
+df
+
+df.columns
+
+df.info
+
+df.types
+
+sns.pairplot(df, hue='species')
+
+sns.pairplot(df, hue='species', diag_kind='hist')
+
+sns.histplot(df['sepal_length'], kde=True)
+
+sns.histplot(df['sepal_width'], kde=True)
+
+sns.histplot(df['petal_width'], kde=True)
+
+sns.boxplot(x=df['sepal_length'])
+
+sns.boxplot(x=df['sepal_width'])
+
+sns.boxplot(x=df['petal_width'])

@@ -1,0 +1,27 @@
+import pandas as pd
+df = pd.read_csv('https://raw.githubusercontent.com/AbhijeetChattar262/Test/main/student.csv')
+df
+
+df.dtypes
+
+df['marks'].mean()
+
+df['marks'].median()
+
+df[['marks','roll','age']].std()
+
+import numpy as np
+np.std(df['marks'])
+
+gr1 = df.groupby('class')
+
+te = gr1.get_group('TE')
+te.min()
+
+te.max()
+
+gr2 = df.groupby('age')
+gr2.groups
+
+tw = gr2.get_group(20)
+tw

@@ -1,0 +1,34 @@
+import seaborn as sns
+df = sns.load_dataset('iris')
+df
+
+x=df.drop('species',axis=1)
+y=df['species']
+
+from sklearn.model_selection import train_test_split
+x_train ,x_test,y_train,y_test=train_test_split(x,y,random_state=0,test_size=0.2)
+
+x_train.shape
+
+x_test.shape
+
+from sklearn.naive_bayes import GaussianNB
+clf= GaussianNB()
+clf.fit(x_train,y_train)
+y_pred=clf.predict(x_test)
+
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import classification_report
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import ConfusionMatrixDisplay
+
+conf_matrix = confusion_matrix(y_test, y_pred)
+
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(8, 6))
+sns.heatmap(conf_matrix, annot=True, cmap='Blues', fmt='g')
+plt.xlabel('Predicted labels')
+plt.ylabel('True labels')
+plt.title('Confusion Matrix')
+plt.show()

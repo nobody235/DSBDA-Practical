@@ -1,0 +1,37 @@
+import nltk
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer, WordNetLemmatizer
+from nltk import pos_tag
+
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('wordnet')
+nltk.download('averaged_perceptron_tagger')
+
+sample_document = "Natural language processing (NLP) is a subfield of linguistics, computer science, and artificial intelligence concerned with the interactions between computers and human language, in particular how to program computers to process and analyze large amounts of natural language data."
+
+print("Original Document:", sample_document)
+
+tokens = word_tokenize(sample_document)
+print("\nTokenization:", tokens)
+
+pos_tags = pos_tag(tokens)
+print("\nPOS Tagging:", pos_tags)
+
+stop_words = set(stopwords.words('english'))
+filtered_tokens = [token for token in tokens if token.lower() not in stop_words]
+print("\nStopwords Removal:", filtered_tokens)
+
+stemmer = PorterStemmer()
+stemmed_tokens = [stemmer.stem(token) for token in filtered_tokens]
+print("\nStemming:", stemmed_tokens)
+
+lemmatizer = WordNetLemmatizer()
+lemmatized_tokens = [lemmatizer.lemmatize(token) for token in filtered_tokens]
+print("\nLemmatization:", lemmatized_tokens)
+
+
+
+
+

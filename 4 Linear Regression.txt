@@ -1,0 +1,36 @@
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error, mean_absolute_percentage_error, r2_score
+
+df = pd.read_csv('https://raw.githubusercontent.com/selva86/datasets/master/BostonHousing.csv')
+df
+
+x = df.drop('medv', axis=1)
+y = df['medv']
+
+x.shape
+
+x_train, x_test, y_train, y_test = train_test_split(x, y, random_state=0, test_size=0.25)
+x_train
+
+regressor = LinearRegression()
+regressor.fit(x_train, y_train)
+
+regressor.coef_
+
+regressor.intercept_
+
+y_pred = regressor.predict(x_test)
+result = pd.DataFrame({'Actual': y_test, 'Predicted': y_pred})
+result
+
+mean_absolute_error(y_pred, y_test)
+
+mean_absolute_percentage_error(y_test, y_pred)
+
+r2_score(y_test, y_pred)
+
+new = [[0.7258, 0, 8.64, 0, 0, 538, 5.727, 69.6, 3.7965, 307, 22, 391.95, 11.28]]
+
+regressor.predict(new)

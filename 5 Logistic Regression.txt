@@ -1,0 +1,30 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import ConfusionMatrixDisplay
+
+df = pd.read_csv('https://gist.githubusercontent.com/davewadestein/5339c464e95f54f724f6f5381f0d95e1/raw/7d462fa4b6c82e1ab9f4e93557e07a0879a9a1c9/Social_Network_ads.csv')
+df
+
+x = df[['Age', 'EstimatedSalary']]
+y = df['Purchased']
+
+scaler = MinMaxScaler()
+x_scaled = scaler.fit_transform(x)
+
+x_train, x_test, y_train, y_test = train_test_split(x_scaled, y, random_state=0, test_size=0.25)
+
+sns.countplot(x=y)
+
+classifier = LogisticRegression()
+classifier.fit(x_train, y_train)
+y_pred = classifier.predict(x_test)
+
+plt.xlabel('Age')
+plt.ylabel('Salary')
+plt.scatter(x_scaled[:, 0], x_scaled[:, 1], c=y)
+
+ConfusionMatrixDisplay.from_predictions(y_pred, y_test)
